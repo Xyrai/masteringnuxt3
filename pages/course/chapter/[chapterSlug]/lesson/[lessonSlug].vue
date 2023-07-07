@@ -9,10 +9,19 @@
     </h2>
 
     <div class="flex space-x-4 mt-2 mb8">
-      <NuxtLink v-if="lesson.sourceUrl" class="font-normal text-md text-gray-500" :to="lesson.sourceUrl">
-        Download source code</NuxtLink>
+      <NuxtLink
+        v-if="lesson.sourceUrl"
+        class="font-normal text-md text-gray-500"
+        :to="lesson.sourceUrl"
+      >
+        Download source code</NuxtLink
+      >
 
-      <NuxtLink v-if="lesson.downloadUrl" class="font-normal text-md text-gray-500" :to="lesson.downloadUrl">
+      <NuxtLink
+        v-if="lesson.downloadUrl"
+        class="font-normal text-md text-gray-500"
+        :to="lesson.downloadUrl"
+      >
         Download Video
       </NuxtLink>
     </div>
@@ -21,22 +30,28 @@
 
     <p>{{ lesson.text }}</p>
 
-    <LessonCompleteButton :model-value="isLessonComplete" @update:model-value="toggleComplete" />
-
+    <LessonCompleteButton
+      :model-value="isLessonComplete"
+      @update:model-value="toggleComplete"
+    />
   </div>
 </template>
 
 <script setup>
-const course = useCourse()
-const route = useRoute()
+const course = useCourse();
+const route = useRoute();
 
 const chapter = computed(() => {
-  return course.chapters.find(chapter => chapter.slug == route.params.chapterSlug)
-})
+  return course.chapters.find(
+    (chapter) => chapter.slug == route.params.chapterSlug
+  );
+});
 
 const lesson = computed(() => {
-  return chapter.value.lessons.find(lesson => lesson.slug == route.params.lessonSlug)
-})
+  return chapter.value.lessons.find(
+    (lesson) => lesson.slug == route.params.lessonSlug
+  );
+});
 
 const title = computed(() => {
   return `${lesson.value.title} - ${course.title}`;
@@ -52,27 +67,18 @@ const isLessonComplete = computed(() => {
   if (!progress.value[chapter.value.number - 1]) {
     return false;
   }
-  if (
-    !progress.value[chapter.value.number - 1][
-    lesson.value.number - 1
-    ]
-  ) {
+  if (!progress.value[chapter.value.number - 1][lesson.value.number - 1]) {
     return false;
   }
-  return progress.value[chapter.value.number - 1][
-    lesson.value.number - 1
-  ];
+  return progress.value[chapter.value.number - 1][lesson.value.number - 1];
 });
 const toggleComplete = () => {
   if (!progress.value[chapter.value.number - 1]) {
     progress.value[chapter.value.number - 1] = [];
   }
-  progress.value[chapter.value.number - 1][
-    lesson.value.number - 1
-  ] = !isLessonComplete.value;
+  progress.value[chapter.value.number - 1][lesson.value.number - 1] =
+    !isLessonComplete.value;
 };
 </script>
-
-
 
 <style></style>
