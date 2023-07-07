@@ -1,5 +1,7 @@
 <template>
-  <div class="p-12 bg-gray-100 w-full h-full min-h-screen flex flex-col items-center">
+  <div
+    class="p-12 bg-gray-100 w-full h-full min-h-screen flex flex-col items-center"
+  >
     <div class="prose mb-12">
       <h1>
         <span class="font-medium">
@@ -10,18 +12,27 @@
     </div>
 
     <div class="flex flex-row justify-center flex-grow">
-      <div class="prose mr-4 p-8 bg-white rounded-md min-w-[20ch] max-w-[30ch] flex flex-col">
+      <div
+        class="prose mr-4 p-8 bg-white rounded-md min-w-[20ch] max-w-[30ch] flex flex-col"
+      >
         <h3>Chapters</h3>
 
-        <div class="space-y-1 mb-4 flex flex-col" v-for="chapter in chapters" :key="chapter.slug">
+        <div
+          class="space-y-1 mb-4 flex flex-col"
+          v-for="chapter in chapters"
+          :key="chapter.slug"
+        >
           <h4>{{ chapter.title }}</h4>
-          <NuxtLink v-for="(lesson, index) in chapter.lessons" :key="lesson.slug"
-            class="flex flex-row space-x-1 no-underline prose-sm font-normal py-1 px-4 -mx-4" :class="{
-              'text-blue-500':
-                lesson.path === $route.fullPath,
-              'text-gray-600':
-                lesson.path !== $route.fullPath,
-            }" :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`">
+          <NuxtLink
+            v-for="(lesson, index) in chapter.lessons"
+            :key="lesson.slug"
+            class="flex flex-row space-x-1 no-underline prose-sm font-normal py-1 px-4 -mx-4"
+            :class="{
+              'text-blue-500': lesson.path === $route.fullPath,
+              'text-gray-600': lesson.path !== $route.fullPath,
+            }"
+            :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`"
+          >
             <span class="text-gray-500">{{ index + 1 }}.</span>
             <span>{{ lesson.title }}</span>
           </NuxtLink>
