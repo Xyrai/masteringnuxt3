@@ -80,5 +80,3 @@ const toggleComplete = () => {
     !isLessonComplete.value;
 };
 </script>
-
-<style></style>
