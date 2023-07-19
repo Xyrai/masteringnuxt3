@@ -14,13 +14,8 @@
         <h1>Dang</h1>
         <p>It looks like something broke.</p>
         <p>Sorry about that.</p>
-        <p>
-          <strong>
-            {{ error.message }}
-          </strong>
-        </p>
       </div>
-      <div class="prose">
+      <div class="prose mt-5">
         <p>
           <strong>{{ error.message }}</strong>
         </p>
