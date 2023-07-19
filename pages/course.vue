@@ -5,8 +5,7 @@
     <div class="prose mb-12">
       <h1>
         <span class="font-medium">
-          Course:
-          <span class="font-bold">Mastering Nuxt 3</span>
+          <span class="font-bold">{{ title }}</span>
         </span>
       </h1>
     </div>
@@ -62,7 +61,7 @@
 </template>
 
 <script setup>
-const { chapters } = useCourse();
+const { chapters, title } = useCourse();
 
 // const resetError = (error) => {
 //   error.value = null;
@@ -79,7 +78,7 @@ const { chapters } = useCourse();
 const resetError = async (error) => {
   throw createError({
     fatal: true,
-    message: 'Fatal error',
+    message: "Fatal error",
   });
 };
 </script>
